@@ -1,3 +1,4 @@
+# coding : utf-8
 
 from robot import Robot
 import numpy as np
@@ -8,10 +9,9 @@ import random
 import pickle
 
 
-First_run=True
-
-
 def main():
+
+    First_run = True
 
     if First_run:
         num = 1;
@@ -21,18 +21,19 @@ def main():
         num=storelist[0]
 
     rbt = Robot()
-    lable_list=""
 
+    lable_list=""
     data_addr_base="/home/zhsy/work/DataSet/grasp3/"
+
     add_obj_num = 10
     rbt.add_objects(add_obj_num)
     time.sleep(3)
+
     ret,color_heightmap, depth_heightmap = rbt.get_height_img()
 
     graspcount=0
 
     while True:
-
 
         if np.sum(depth_heightmap) < 150 or rbt.checkState() or graspcount>(2*add_obj_num):#没有物品或者出现异常
             rbt.simrestart()
@@ -61,7 +62,6 @@ def main():
         cv2.imwrite(data_addr_base + 'color_image/color_img_%d.jpg' % num, color_heightmap)
         cv2.imwrite(data_addr_base + 'depth_image/depth_img_%d.jpg' % num, depth_heightmap[:, :] / 0.12 * 255)
 
-
         if succ == True:
             lable_list=lable_list+'depth_rect_img_%d.jpg' % num+"   1"+"\n"
             print('grasp success !')
@@ -69,7 +69,6 @@ def main():
         else:
             lable_list=lable_list+'depth_rect_img_%d.jpg' % num + "   0"+"\n"
             print('grasp failed !')
-       
 
         graspcount+=1
         num+=1;
@@ -83,8 +82,6 @@ def main():
             f.close()
             lable_list=""
             pass
-
-
 
 if __name__ == '__main__':
     main()

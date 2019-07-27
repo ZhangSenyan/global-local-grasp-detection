@@ -1,4 +1,6 @@
 # coding : utf-8
+
+
 import numpy as np
 import time
 import utils
@@ -41,15 +43,5 @@ class Predictor(object):
         patch=rectSlides.reshape(-1, 36, 72, 1)[int(np.where(score == np.max(score))[0][0])]
 
         return location,angle,PlanningTime,lable,depth,patch
-
-
-
-
-
-
-
-
-
-
 
 

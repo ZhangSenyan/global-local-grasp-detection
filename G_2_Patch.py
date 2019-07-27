@@ -7,8 +7,6 @@ import cv2
 import utils
 
 
-
-
 def main():
     data_path_base = '/home/zhsy/work/DataSet/grasp3/'
     rect_num=0
@@ -60,12 +58,6 @@ def main():
         f = open(data_path_base + 'depth_square_image/lable_square.txt', 'a')
         f.write(lable_list)
         f.close()
-        lable_list = ""
-        #print("computing ---- ",num)
-
-
-
-
 
 if __name__ == '__main__':
     main()
